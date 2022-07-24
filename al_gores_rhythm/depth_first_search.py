@@ -4,11 +4,6 @@ Recursive algorithm for traversing a graph structure by
 reaching each node until the end is found then returning to the previously
 visited nodes until a new one is visited.
 
-Newly visited nodes must be kept track so you don't visit a node more than
-once.  Keep track using a stack where you push a visited node onto the
-stack then pop a node off the stack if you have no adjecent nodes
-to visit.  The pop action is a backtrack to search other nodes.
-
 Time complexity is O(V + E) where V is the number of verticies in a
 graph and E is the number of edges.
 
@@ -21,7 +16,11 @@ There are two methods to traverse a graph data structure:
 Both will work with the same result to traverse a graph structure but a Depth
 First Search is simpler if you want to visit every node in the tree.
 
-If you want to find the shortest path in a graph, then BFS is preferred.
+Note that pre-order and other forms of tree traversal are a form of DFS.
+
+If you want to find the shortest path in a graph, then BFS is preferred.  For
+example, if using DFS, you'd have to traverse the length of the tree even
+two nodes are near each other horizontally.
 
 # Representation
 
@@ -36,7 +35,6 @@ To represent vertices, there are two options:
     effecient compared to the list since you'd have to traverse the table N*N
     times.
 
-
 # Use cases
 
 Topological sorting, scheduling problems, graph cycle detection,
@@ -44,10 +42,16 @@ and solving puzzles with one solution such as traverse a maze or
 solve a sudoku puzzle all require the use of DFS.  Computer networking
 uses DFS for example if a network is bipartite.
 
-Process:
+Recursive process:
+
+
+Iterative process:
     1. Start on a node.
-    2. Push all adjecent nodes onto stack A.
-    3. Visit each node on stack A
+    2. Start with 2 stacks: stack A for tracking adjacent nodes and stack B
+       for tracking visited nodes.
+    3. Push all adjecent nodes onto stack A.
+    4. For each node visited, push onto stack B.
+    5. Visit each node on stack A.
 
 Sources:
     https://www.simplilearn.com/tutorials/data-structure-tutorial/dfs-algorithm
@@ -56,7 +60,6 @@ Sources:
     https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/tutorial/
 """
 
-from collections import defaultdict
 import logging
 from typing import Any
 
@@ -64,16 +67,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
 
 def main():
-    graph: dict = {
-        "5": ["3", "7"],
-        "3": ["2", "4"],
-        "7": ["8"],
-        "2": [],
-        "4": ["8"],
-        "8": []
-    }
-
-    # Graph is undirected since e refers back to b, c, and d.
+    # Graph is undirected since e refers back to 1, 2, and 3.
     #
     #    0
     #  / | \
@@ -99,10 +93,6 @@ def main():
         4: [1, 2, 3]
     }
 
-    # Set() is more effecient than List in
-    # checking if value already exists in itself but Set() acts as a queue
-    # visited = set()
-
     # Get all vertices in a single place
     # vertex_set: set(Any) = set()
     # for vertex1, vertex2 in graph_two:
@@ -113,24 +103,47 @@ def main():
 
     logging.info("Visited tracker: %s", visited)
     logging.info("Graph: %s", graph_two)
-    logging.info("RESULT: %s", dfs(
-        visited, graph_two, list(graph_two.keys())[0]))
+
+    logging.info("DFS recursive")
+    dfs_recusive(visited, graph_two, list(graph_two.keys())[0])
+
+    logging.info("DFS iterative")
+
+    # dfs_iterative(visited, graph_two, list(graph_two.keys())[0])
 
 
-def dfs(visited: dict, graph: dict, node: Any):
+def dfs_recusive(visited: dict, graph: dict, node: Any):
     """Traverse the entire graph and print out values.
 
     Args:
         visited: Hash map of nodes and if we have visited it.
-        graph: The entire graph. 
-        node: Current node. 
+        graph: The entire graph.
+        node: Current node.
     """
     if not visited[node]:
         logging.info("Visited new node: %s", node)
         visited[node] = True
 
         for adjacent_node in graph[node]:
-            dfs(visited, graph, adjacent_node)
+            dfs_recusive(visited, graph, adjacent_node)
+
+
+# def dfs_iterative(visited: dict, graph: dict, node: Any):
+#     """Traverse the entire graph and print values using stacks.
+
+#     Args:
+#         See dfs_recursive().
+#     """
+#     adjacent_stack: list = []
+
+#     for n in graph:
+#         if not visited[n]:
+#             visited[n] = True
+#             logging.info("Visited new node: %s", n)
+#             for adjacent_node in graph[n]:
+#                 adjacent_stack.append(n)
+
+#             while adjacent_node:
 
 
 if __name__ == "__main__":
