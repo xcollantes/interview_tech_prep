@@ -29,9 +29,9 @@ def main():
     logging.info("Sorted: %s", sorted(input1))
     logging.info("Solution: %s", insertion_sort(input1))
 
-    # assert insertion_sort(input1) == sorted(input1)
-    # assert insertion_sort(input2) == sorted(input2)
-    # assert insertion_sort(input3) == sorted(input3)
+    assert insertion_sort(input1) == sorted(input1)
+    assert insertion_sort(input2) == sorted(input2)
+    assert insertion_sort(input3) == sorted(input3)
 
 
 def insertion_sort(input: list) -> list:
