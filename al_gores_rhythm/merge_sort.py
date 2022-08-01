@@ -1,6 +1,6 @@
 """Merge sort.
 
-Divide and conquer technicque with time complexity of O(n log n). 
+Divide and conquer technique with time complexity of O(n log n). 
 The array is broken down to its most atomic parts then put back 
 together but the parts are compared when reorganized. 
 
