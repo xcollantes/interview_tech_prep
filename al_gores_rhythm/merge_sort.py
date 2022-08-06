@@ -6,6 +6,9 @@ together but the parts are compared when reorganized.
 
 The mid element is chosen using `mid: int = len(input) // 2` where the 
 `//` will return the floor divide of the operands. This is true for Python3.  
+
+Time complexity: O(n log n).  Breaks down the list of elements and makes 
+comparisons for each atomic value. 
 """
 
 import logging
