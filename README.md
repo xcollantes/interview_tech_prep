@@ -10,31 +10,63 @@ Specially annotated with procedures and different options such as optimizations.
 
 <https://engbookspdf.xyz/uploads/pdf/Cracking%20The%20Coding%20Interview%206th%20Edition%20by%20Laakmann.pdf>
 
-## Sorting algorithms
+## Data structures
 
-Stable sort type:
-Elements with identical values are sorted in the same order.  For example,
-in an array `[4, 6, 4, 1, 0]`, the sorted form would be `[0, 1, 4, 4, 6]`.  
-A stable algorithm would sort the array with the duplicate values in the same order
-where the first 4 in the unsorted array also comes first in the sorted array.  
+Different ways to store data.
 
-Usually in sorting, we don't differentiate with duplicate values.  But in
-practice, the duplicate numbers could represent something (like being tied to
-some address).  
+### Hashing
 
-Comparison based algorithm
+A Hash Table is a way to store data after being processed by a Hash Function.  
+The Hash Table will contain data with a Key and Value pair.  
 
-Counting based algorithm
+Hash collision:
+When a Hash Function creates duplicate Keys and a conflict is created where that
+Key is stored.
 
-Big O
+Resolve Hash collisions by choosing a technique:
+    - resolve by "chaining"
+    - resolve through "open addressing"
+        - linear/quadratic probing
+        - double hashing
 
-## Linear data structures
+Chaining:
+When a collision is found, store the new data using a Doubly Linked List.
+
+![Hash chaining](https://cdn.programiz.com/sites/tutorial2program/files/Hash-3_1.png)
+
+Open addressing:
+Instead of storing multiple values in one slot in the Hash Table, each slot
+has one value or left NULL. Use either Linear probing or Double Hashing.
+
+Linear probing:
+If conflict is found, place value in next slot.  
+
+```python
+i = some index
+m = some mod 
+hash_function(key, value) = (hash_function_prime(key) + i) % m
+```
+
+If there is a conflict at i + 1, then check i + 2, and so on.  The value will
+be placed until an open slot if found in a linear iteration.
+
+Downfall of Linear addressing: If a cluster of slots are occupied, then the
+whole cluster must be iterated on.
+
+Quadratic probing:
+Checks for an open slot like Linear probing but instead of +1 for increments,
+each increment is larger.  
+
+Double hashing:
+If a collision is found, use another hash function to find next slot.
+
+### Linear data structures
 
 Arrays, linked lists, stacks, and queue are linear data structures where
 performing operations increases in time complexity with the increase of input
 data.
 
-## Tree structures
+### Tree structures
 
 Tree:
 Collection of linked nodes.  Use a tree to perform operations in more efficient
@@ -100,3 +132,21 @@ Directed graph: Graph where the edges are in only one direction as opposed
 to nodes where the edge is two way.  
 
 Acylical graph:
+
+## Sorting algorithms
+
+Stable sort type:
+Elements with identical values are sorted in the same order.  For example,
+in an array `[4, 6, 4, 1, 0]`, the sorted form would be `[0, 1, 4, 4, 6]`.  
+A stable algorithm would sort the array with the duplicate values in the same order
+where the first 4 in the unsorted array also comes first in the sorted array.  
+
+Usually in sorting, we don't differentiate with duplicate values.  But in
+practice, the duplicate numbers could represent something (like being tied to
+some address).  
+
+Comparison based algorithm
+
+Counting based algorithm
+
+Big O
