@@ -4,7 +4,7 @@ Recursive algorithm for traversing a graph structure by
 reaching each node until the end is found then returning to the previously
 visited nodes until a new one is visited.
 
-Time complexity is O(V + E) where V is the number of verticies in a
+Time complexity is O(V + E) where V is the number of vertices in a
 graph and E is the number of edges.
 
 # Depth First vs Breadth First
@@ -32,7 +32,7 @@ To represent vertices, there are two options:
     - Adjacency matrix: a table representation where the vertices are listed on
     the header and left side of the table and the values are true or false
     depending if there is an edge between the two vertices.  This is less
-    effecient compared to the list since you'd have to traverse the table N*N
+    efficient compared to the list since you'd have to traverse the table N*N
     times.
 
 # Use cases
