@@ -6,13 +6,57 @@ Specially annotated with procedures and different options such as optimizations.
 
 <https://www.programiz.com/dsa/>
 
-## Recommended reading
+## Interview structure
 
-<https://engbookspdf.xyz/uploads/pdf/Cracking%20The%20Coding%20Interview%206th%20Edition%20by%20Laakmann.pdf>
+An interviewer may as questions about you, your resume, what you like to do,
+or what you hope to accomplish.  The interviewee should prepare for these
+questions but this guide will focus on the purely technical interviews.  
+
+### Prep
+
+Use this repo to prepare for the Data Structures and Algorithms portion of
+the interview.  
+
+Read all of [*Cracking the Coding Interview by Gayle Laakmann McDowell*](https://engbookspdf.xyz/uploads/pdf/Cracking%20The%20Coding%20Interview%206th%20Edition%20by%20Laakmann.pdf)
+
+Along with Data Structures and Algorithms, interviewer may also ask you about:
+
+- Linux system administration commands
+- How the internet works
+- How a computer works
+- How to structure a web server
+
+These topics are not covered here.  
+
+### During the interview
+
+1. Get to know who's interviewing you.  
+1. Listen carefully to the interviewer's question.  
+1. IMPORTANT: Ask clarifying questions.  
+    - "What are we optimizing for?  Time, space, speed?"
+
+1. Speak your thoughts on how to structure the solution:
+   Think upfront and get issues out of the way to avoid
+   completely changing the solution you're coding halfway through.  
+
+1. Clarify use cases, look for most obvious case, look for edge cases.  
+
+1. Think of the most direct solution which could be a brute force solution.  
+
+1. Optimize your solution.
+
+1. Ask for feedback.  
+
+TIPS: Feel free to ask for help.
 
 ## Data structures
 
 Different ways to store data.
+
+Visualizing sorting algorithms:
+
+- <https://visualgo.net/en/bst?slide=1>
+- <https://www.cs.usfca.edu/~galles/visualization/BST.html>
 
 ### Hashing
 
@@ -162,7 +206,7 @@ this concept.
 
 > Imagine the following scenario: You've got a file on a hard drive and you need to send it to your friend who lives across the country. You need to get the file to your friend as fast as possible. How should you send it? Most people's first thought would be email, FTP, or some other means of electronic transfer. That thought is reasonable, but only half correct. If it's a small file, you're certainly right. It would take 5 - 10 hours to get to an airport, hop on a flight, and then deliver it to your friend. But what if the file were really, really large? Is it possible that it's faster to physically deliver it via plane? Yes, actually it is. A one-terabyte (1 TB) file could take more than a day to transfer electronically. It would be much faster to just fly it across the country. If your file is that urgent (and cost isn't an issue), you might just want to do that. What if there were no flights, and instead you had to drive across the country? Even then, for a really huge file, it would be faster to drive.
 
-Excerpt from _Cracking The Coding Interview 6th Edition by Laakmann_.
+Excerpt from *Cracking The Coding Interview 6th Edition by Laakmann*.
 
 Big O is useful since comparing an algorithm on a 2022 MacBook Pro will run
 differently on a Commodore 64 from 1982.  Further, depending on what other
@@ -223,3 +267,46 @@ how Big O works.
 
 That's not to say Example 1 is more efficient, Example 1 is more efficient.  
 Big O is concerned with the growth of inputs as opposed to overall efficiency.  
+
+## Dynamic programming
+
+Keep track of values to do less work.  
+
+### Memoization
+
+Example: Fibonacci sequence `f(x) = f(x - 1) + f(x - 2); f(1) = 1; f(2) = 1`
+
+```python
+def fib(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+```
+
+This solution without memoization will compute the same value multiple times
+such as `fib(3)`, `fib(1)`, etc.
+
+**With memoization:**
+
+```python
+memo: dict[int, int] = dict()
+
+def fib(n, memo):
+    if memo[n]:  # O(1)
+        return memo[n]
+    if n == 1 or n == 2:  # O(1)
+        return 1
+    else:
+        memo[n] = fib(n - 1) + fib(n - 2)  # O(2n)
+```
+
+Without memoization time complexity: O(2n + 1) since you call `fib()` twice
+for every `n` value.
+
+With memoization time complexity: O(2n + 1) * O(1) since each operation
+takes O(1).  This results to O(n) since we drop constants.
+
+<https://www.youtube.com/watch?v=P8Xa2BitN3I>
+
+<https://www.youtube.com/watch?v=vYquumk4nWw>

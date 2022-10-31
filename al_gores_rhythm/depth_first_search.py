@@ -49,7 +49,7 @@ Iterative process:
     1. Start on a node.
     2. Start with 2 stacks: stack A for tracking adjacent nodes and stack B
        for tracking visited nodes.
-    3. Push all adjecent nodes onto stack A.
+    3. Push all adjacent nodes onto stack A.
     4. For each node visited, push onto stack B.
     5. Visit each node on stack A.
 
@@ -93,26 +93,18 @@ def main():
         4: [1, 2, 3]
     }
 
-    # Get all vertices in a single place
-    # vertex_set: set(Any) = set()
-    # for vertex1, vertex2 in graph_two:
-    #     vertex_set.add(vertex1)
-    #     vertex_set.add(vertex2)
-
     visited: dict(Any, bool) = {vertex: False for vertex in graph_two.keys()}
 
     logging.info("Visited tracker: %s", visited)
     logging.info("Graph: %s", graph_two)
 
     logging.info("DFS recursive")
-    dfs_recusive(visited, graph_two, list(graph_two.keys())[0])
+    dfs_recursive(visited, graph_two, list(graph_two.keys())[0])
 
     logging.info("DFS iterative")
 
-    # dfs_iterative(visited, graph_two, list(graph_two.keys())[0])
 
-
-def dfs_recusive(visited: dict, graph: dict, node: Any):
+def dfs_recursive(visited: dict, graph: dict, node: Any):
     """Traverse the entire graph and print out values.
 
     Args:
@@ -125,25 +117,7 @@ def dfs_recusive(visited: dict, graph: dict, node: Any):
         visited[node] = True
 
         for adjacent_node in graph[node]:
-            dfs_recusive(visited, graph, adjacent_node)
-
-
-# def dfs_iterative(visited: dict, graph: dict, node: Any):
-#     """Traverse the entire graph and print values using stacks.
-
-#     Args:
-#         See dfs_recursive().
-#     """
-#     adjacent_stack: list = []
-
-#     for n in graph:
-#         if not visited[n]:
-#             visited[n] = True
-#             logging.info("Visited new node: %s", n)
-#             for adjacent_node in graph[n]:
-#                 adjacent_stack.append(n)
-
-#             while adjacent_node:
+            dfs_recursive(visited, graph, adjacent_node)
 
 
 if __name__ == "__main__":

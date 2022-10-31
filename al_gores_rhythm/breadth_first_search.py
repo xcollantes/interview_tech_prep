@@ -25,6 +25,9 @@ There are two methods to traverse a graph data structure:
 Both will work with the same result to traverse a graph structure but a Depth
 First Search is simpler if you want to visit every node in the tree.
 
+Tracking max length: To find the longest length, BFS can keep track of this 
+internally where DFS must keep track with a global map since DFS is recursive. 
+
 Time complexity: O(Vertices + Edges)
 
 Process: 
