@@ -9,9 +9,6 @@ once.  Keep track using a queue where you push a visited node onto the
 queue then pop a node off the queue if you have no adjecent nodes
 to visit.  The pop action is a backtrack to search other nodes.
 
-Note: while DFS can be written recusively and iteratively, BFS is only 
-available iteratively. 
-
 If you want to find the shortest path in a graph, then BFS is preferred.  For
 example, if using DFS, you'd have to traverse the length of the tree even
 two nodes are near each other horizontally.

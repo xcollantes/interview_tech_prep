@@ -218,7 +218,7 @@ on Time or Space Complexity, independent of uncontrolled variables.
 ### Time complexity
 
 [Asymptotic relationship](https://en.wikipedia.org/wiki/Asymptotic_analysis)
-between inputs and growth of
+between inputs and growth outputs.  
 
 ### Space complexity
 
