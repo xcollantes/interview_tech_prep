@@ -24,8 +24,8 @@ def sortedSquares(nums: List[int]) -> List[int]:
     left: int = 0
     right: int = len(nums) - 1
 
-    for resultIdx in range(len(nums) - 1, -1, -1):
-        if abs(nums[left]) > abs(nums[right]):
+    for result_idx in range(len(nums) - 1, -1, -1):
+        if abs(nums[left]) >= abs(nums[right]):
             to_square = nums[left]
             left += 1
         else:
@@ -34,7 +34,7 @@ def sortedSquares(nums: List[int]) -> List[int]:
 
         square: int = to_square ** 2
         print(square)
-        result[resultIdx] = square
+        result[result_idx] = square
 
     return result
 
