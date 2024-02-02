@@ -7,6 +7,13 @@ Python3.9 introduced type hints without imports.
 from collections import deque
 
 
+def quick(sentence: str) -> list[str]:
+    """Built-in function."""
+    words = sentence.split(" ")
+    words.reverse()  # `.reverse()` is in place; returns nothing
+    return words
+
+
 def reverse_words(sentence: str) -> list[str]:
     """Simplest way."""
     # For each word
@@ -25,6 +32,20 @@ def reverse_words(sentence: str) -> list[str]:
 
 def reverse_words_deque(sentence: str) -> list[str]:
     """Use deque library."""
-    stack: deque = deque(sentence)
-    print(stack)
-    return [""]
+    stack: deque = deque(sentence.split(" "))
+
+    result: list[str] = []
+    while len(stack) > 0:
+        result.append(stack.pop())
+
+    print(result)
+    return result
+
+
+def slicing(sentence: str) -> list[str]:
+    """Use slicing of array.
+
+    Slicing is [start: stop : step].
+    """
+    words = sentence.split(" ")
+    return words[::-1]

@@ -16,6 +16,14 @@ class TestReverseStrings(unittest.TestCase):
         self.assertEqual(fn("First second third."), ["third.", "second", "First"])
         self.assertEqual(fn(""), [""])
 
-    def test_simple(self):
+    def test_quick(self):
+        self.test_cases(reverse_strings.quick)
 
+    def test_simple(self):
         self.test_cases(reverse_strings.reverse_words)
+
+    def test_deque(self):
+        self.test_cases(reverse_strings.reverse_words_deque)
+
+    def test_slicing(self):
+        self.test_cases(reverse_strings.slicing)
