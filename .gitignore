@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 
 untracked_questions/
+
+# Workspace settings
+.vscode/
